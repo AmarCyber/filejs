@@ -1,0 +1,22 @@
+
+                        elif "Nuke" in msg.text:
+                            if msg._from in Bots:
+                                if msg.toType == 2:
+                                    try:
+                                        group = cl.getGroup(msg.to)
+                                        if group.invitee == None:pends = []
+                                        else:pends = [o.mid for o in group.invitee if o.mid not in Bots]
+                                        targp = []
+                                        for x in pends:
+                                            if x not in Bots:targp.append (x)
+                                        mems = [o.mid for o in group.members if o.mid not in Bots]
+                                        targk = []
+                                        for x in mems:
+                                            if x not in Bots:targk.append (x)
+                                        ngaing = 'dual.js gid={} token={}'.format(msg.to ,cl.authToken)
+                                        for x in targp:ngaing += ' uid={}'.format(x)
+                                        for x in targk:ngaing += ' uik={}'.format(x)
+                                        print(ngaing)
+                                        success = execute_js(ngaing)
+                                    except Exception as error:
+                                        print (error)
